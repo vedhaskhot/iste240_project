@@ -57,10 +57,4 @@ public class Car {
         this.price = price;
     }
 
-    // Optional: Display Object Data
-    @Override
-    public String toString() {
-        return "Car [Brand=" + brand + ", Model=" + model +
-                ", Year=" + year + ", Price=" + price + "]";
-    }
 }
