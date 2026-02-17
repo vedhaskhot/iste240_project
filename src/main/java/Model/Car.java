@@ -1,4 +1,4 @@
-package edu.rit.assignment1;
+package Model;
 
 import org.springframework.stereotype.Component;
 
