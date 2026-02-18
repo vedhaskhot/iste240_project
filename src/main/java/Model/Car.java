@@ -1,4 +1,4 @@
-package edu.rit.assignment1;
+package Model;
 
 import org.springframework.stereotype.Component;
 
@@ -56,10 +56,4 @@ public class Car {
         this.price = price;
     }
 
-    // Optional: Display Object Data
-    @Override
-    public String toString() {
-        return "Car [Brand=" + brand + ", Model=" + model +
-                ", Year=" + year + ", Price=" + price + "]";
-    }
 }
