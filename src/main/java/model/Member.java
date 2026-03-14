@@ -5,6 +5,10 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class Member {
     private String memberid;
     private String membername;
@@ -17,6 +21,12 @@ public class Member {
         this.membername = membername;
         this.member_sponsor = member_sponsor;
         this.homeBranch = homeBranch;
+    private List<MembershipApplication> applications= new ArrayList<>();
+
+    public Member( String memberid, String membername, String member_sponsor) {
+        this.memberid = memberid;
+        this.membername = membername;
+        this.member_sponsor = member_sponsor;
     }
 
     public String getMemberid() {
@@ -57,5 +67,13 @@ public class Member {
 
     public void setHomeBranch(Branch homeBranch) {
         this.homeBranch = homeBranch;
+    }
+
+    public List<MembershipApplication> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(List<MembershipApplication> applications) {
+        this.applications = applications;
     }
 }

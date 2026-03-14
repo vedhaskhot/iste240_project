@@ -3,6 +3,7 @@ package model;
 import org.springframework.stereotype.Component;
 
 @Component
+
 public class Car {
 
 
@@ -10,6 +11,8 @@ public class Car {
     private String model;
     private int year;
     private double price;
+    private Member member;
+    private Branch branch;
 
 
     public Car() {
@@ -57,4 +60,19 @@ public class Car {
         this.price = price;
     }
 
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
+    }
 }
