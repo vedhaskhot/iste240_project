@@ -1,5 +1,10 @@
 package model;
 
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+
+@Component
 import java.util.ArrayList;
 
 
@@ -11,6 +16,7 @@ public class Branch{
     private ArrayList<Car> inventory= new ArrayList<>();
     private ArrayList<Member> homeMembers= new ArrayList<>();
     private ArrayList<Member> awayMembers= new ArrayList<>();
+
     private ArrayList<MembershipApplication> applications= new ArrayList<>();
     public Branch(String branchID, String city, String address, String branchManager){
         this.branchID = branchID;

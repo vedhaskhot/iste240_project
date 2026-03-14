@@ -1,5 +1,10 @@
 package model;
 
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +15,12 @@ public class Member {
     private String member_sponsor;
     private List<Car> usage_history =  new ArrayList<>();
     private Branch homeBranch;
+
+    public Member( String memberid, String membername, String member_sponsor, Branch homeBranch) {
+        this.memberid = memberid;
+        this.membername = membername;
+        this.member_sponsor = member_sponsor;
+        this.homeBranch = homeBranch;
     private List<MembershipApplication> applications= new ArrayList<>();
 
     public Member( String memberid, String membername, String member_sponsor) {
