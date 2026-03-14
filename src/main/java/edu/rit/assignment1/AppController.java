@@ -1,5 +1,6 @@
 package edu.rit.assignment1;
 
+import Model.MembershipApplication;
 import model.Car;
 import model.Member;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,25 @@ public class AppController {
         return "cars";
     }
 
+    @GetMapping("/applications")
+    public String showApplications(Model model){
+        model.addAttribute("Applications", dataService.getAllApplications());
+        return "applications";
+    }
+
+    @GetMapping("/applications/add")
+    public String showAddApplication(Model model){
+        model.addAttribute("members",dataService.getAllMembers());
+        return "addApplication";
+    }
+
+    @PostMapping("/applications/add")
+    public String addMemberData(MembershipApplication applicationData, Model model){
+        dataService.addApplication(applicationData);
+        model.addAttribute("entityName","Application");
+        return "success";
+    }
+}
     @GetMapping("/cars/add")
     public String showAddCars(Model model){
         return "addCars";
