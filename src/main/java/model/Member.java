@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import org.springframework.stereotype.Component;
 
@@ -11,11 +11,13 @@ public class Member {
     private String membername;
     private String member_sponsor;
     private List<Car> usage_history =  new ArrayList<>();
+    private Branch homeBranch;
 
-    public Member( String memberid, String membername, String member_sponsor) {
+    public Member( String memberid, String membername, String member_sponsor, Branch homeBranch) {
         this.memberid = memberid;
         this.membername = membername;
         this.member_sponsor = member_sponsor;
+        this.homeBranch = homeBranch;
     }
 
     public String getMemberid() {
@@ -48,5 +50,13 @@ public class Member {
 
     public void setUsage_history(List<Car> usage_history) {
         this.usage_history = usage_history;
+    }
+
+    public Branch getHomeBranch() {
+        return homeBranch;
+    }
+
+    public void setHomeBranch(Branch homeBranch) {
+        this.homeBranch = homeBranch;
     }
 }
