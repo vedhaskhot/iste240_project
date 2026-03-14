@@ -2,8 +2,6 @@ package model;
 
 import org.springframework.stereotype.Component;
 
-@Component
-
 public class MembershipApplication {
     private String applicationId;
     private String applicantName;

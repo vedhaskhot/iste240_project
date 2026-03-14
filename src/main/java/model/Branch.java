@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
-@Component
 import java.util.ArrayList;
 
 
