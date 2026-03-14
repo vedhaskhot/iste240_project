@@ -1,8 +1,9 @@
-package edu.rit.assignment1;
+package model;
 
 import org.springframework.stereotype.Component;
 
 @Component
+
 public class Car {
 
 
@@ -10,6 +11,9 @@ public class Car {
     private String model;
     private int year;
     private double price;
+    private Branch flagshipBranch;
+    private Member member;
+    private Branch branch;
 
 
     public Car() {
@@ -57,10 +61,27 @@ public class Car {
         this.price = price;
     }
 
-    // Optional: Display Object Data
-    @Override
-    public String toString() {
-        return "Car [Brand=" + brand + ", Model=" + model +
-                ", Year=" + year + ", Price=" + price + "]";
+    public Branch getFlagshipBranch() {
+        return flagshipBranch;
+    }
+
+    public void setFlagshipBranch(Branch flagshipBranch) {
+        this.flagshipBranch = flagshipBranch;
+    }
+}
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
     }
 }

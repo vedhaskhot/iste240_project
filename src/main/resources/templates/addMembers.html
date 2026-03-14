@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EliteDrive - Add Member</title>
+</head>
+<body>
+<h1>Add New Member</h1>
+
+<form action="/members/add" method="post">
+    <label>Member ID:</label>
+    <input type="text" name="memberid" required><br><br>
+
+    <label>Name:</label>
+    <input type="text" name="membername" required><br><br>
+
+    <label>Sponsor ID:</label>
+    <input type="text" name="member_sponsor"><br><br>
+
+    <!-- DROPDOWN for Home Branch (LINK 1) -->
+    <label>Home Branch:</label>
+    <select name="homeBranch.branchID" required>
+        <option value="">-- Select Home Branch --</option>
+        {{#branches}}
+        <option value="{{branchID}}">{{city}} ({{branchID}})</option>
+        {{/branches}}
+    </select><br><br>
+
+    <button type="submit">Add Member</button>
+</form>
+
+<br>
+<a href="/members">Back to Members</a>
+<br>
+<a href="/">Home</a>
+</body>
+</html>
