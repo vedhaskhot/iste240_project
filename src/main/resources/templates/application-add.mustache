@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EliteDrive - New Application</title>
+</head>
+<body>
+<h1>Submit Membership Application</h1>
+
+<form action="/applications/add" method="post">
+    Application ID: <input type="text" name="applicationId" required><br><br>
+
+    Applicant:
+    <select name="applicant.memberid" required>
+        <option value="">Select Applicant</option>
+        {{#members}}
+        <option value="{{memberid}}">{{membername}}</option>
+        {{/members}}
+    </select><br><br>
+
+    Sponsor:
+    <select name="sponsor.memberid">
+        <option value="">Select Sponsor</option>
+        {{#members}}
+        <option value="{{memberid}}">{{membername}}</option>
+        {{/members}}
+    </select><br><br>
+
+    Preferred Branch:
+    <select name="preferredBranch.branchID" required>
+        <option value="">Select Branch</option>
+        {{#branches}}
+        <option value="{{branchID}}">{{city}}</option>
+        {{/branches}}
+    </select><br><br>
+
+    Status: <input type="text" name="status" value="PENDING"><br><br>
+
+    <button type="submit">Submit Application</button>
+</form>
+
+<br>
+<a href="/applications">Back to Applications</a>
+<br>
+<a href="/">Home</a>
+</body>
+</html>
