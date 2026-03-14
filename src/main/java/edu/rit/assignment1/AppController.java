@@ -21,7 +21,7 @@ public class AppController {
     }
     @GetMapping("/members")
     public String showMembers(Model model){
-        model.addAttribute("members", dataService.getMembers());
+        model.addAttribute("members", dataService.getAllMembers());
         return "members";
     }
 

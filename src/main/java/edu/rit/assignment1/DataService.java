@@ -21,7 +21,7 @@ public class DataService {
         members.add(kermit);
     }
 
-    public List<Member> getMembers() {
+    public List<Member> getAllMembers() {
         return members;
     }
 
