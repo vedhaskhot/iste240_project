@@ -27,11 +27,6 @@ public class AppController {
         return "index.html";
     private DataService dataService;
 
-    @RequestMapping("/index")
-    public String getIndexPage(){
-        return "index";
-
-    }
     @GetMapping("/members")
     public String showMembers(Model model){
         model.addAttribute("members", dataService.getAllMembers());
@@ -50,10 +45,6 @@ public class AppController {
         model.addAttribute("entityName","Member");
         return "success";
 
-    @GetMapping("/")
-    public String home(){
-        return "index.html";
-    }
     @GetMapping("/branches")
     public String showBranches(Model model){
         model.addAttribute("branches",dataService.getAllBranches());
