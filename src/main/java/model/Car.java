@@ -1,14 +1,13 @@
-package Model;
+package model;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class Car {
 
 
     private String brand;
-    private String model;    private int year;
+    private String model;
+    private int year;
     private double price;
+    private Branch flagshipBranch;
 
 
     public Car() {
@@ -56,4 +55,11 @@ public class Car {
         this.price = price;
     }
 
+    public Branch getFlagshipBranch() {
+        return flagshipBranch;
+    }
+
+    public void setFlagshipBranch(Branch flagshipBranch) {
+        this.flagshipBranch = flagshipBranch;
+    }
 }
