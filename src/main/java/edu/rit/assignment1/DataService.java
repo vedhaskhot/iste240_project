@@ -33,6 +33,8 @@ public class DataService {
         branches.add(branch1);
         branches.add(branch2);
 
+        applications.add(new MembershipApplication("AP1000", "Morris Kernal", "M001"));
+        applications.add(new MembershipApplication("AP1001", "Ben Davis", "M002"));
     }
 
     public List<Car> getAllCars() {
@@ -58,5 +60,12 @@ public class DataService {
 
     public void addBranch (Branch branch){
         branches.add(branch);
+    }
+    public List<MembershipApplication> getAllApplications() {
+        return applications;
+    }
+
+    public void addApplication(MembershipApplication application) {
+        applications.add(application);
     }
 }

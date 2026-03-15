@@ -13,6 +13,9 @@ public class MembershipApplication {
         this.applicantName = applicantName;
         this.sponsorMemberId = sponsorMemberId;
     }
+    public MembershipApplication(){
+
+    }
 
     public String getApplicationId() {
         return applicationId;

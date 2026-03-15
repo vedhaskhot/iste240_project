@@ -76,5 +76,25 @@ public class AppController {
         model.addAttribute("entityName","branch");
         return "success";
     }
+    @GetMapping("/applications")
+    public String showApplications(Model model){
+        model.addAttribute("applications", dataService.getAllApplications());
+        return "applications";
+    }
+
+
+    @GetMapping("/applications/add")
+    public String showAddApplicationForm(Model model){
+        model.addAttribute("application", new MembershipApplication());
+        return "application-add";
+    }
+
+
+    @PostMapping("/applications/add")
+    public String addApplication(@ModelAttribute MembershipApplication application, Model model) {
+        dataService.addApplication(application);
+        model.addAttribute("entityName", "Application");
+        return "success";
+    }
 
 }
