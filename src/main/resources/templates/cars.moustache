@@ -10,7 +10,7 @@
   <thead>
   <tr>
     <th>Brand</th>
-    <th>Model</th>
+    <th>model</th>
     <th>Year</th>
     <th>Price</th>
   </tr>

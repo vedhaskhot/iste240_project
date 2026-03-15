@@ -23,13 +23,11 @@ public class Branch{
         this.address = address;
         this.branchManager = branchManager;
     }
-    public Branch(){
-
-    }
 
     public String getBranchID() {
         return branchID;
     }
+
     public void setBranchID(String branchID) {
         this.branchID = branchID;
     }
@@ -37,6 +35,7 @@ public class Branch{
     public String getCity() {
         return city;
     }
+
     public void setCity(String city) {
         this.city = city;
     }
@@ -44,6 +43,7 @@ public class Branch{
     public String getAddress() {
         return address;
     }
+
     public void setAddress(String address) {
         this.address = address;
     }
@@ -51,6 +51,7 @@ public class Branch{
     public String getBranchManager() {
         return branchManager;
     }
+
     public void setBranchManager(String branchManager) {
         this.branchManager = branchManager;
     }
@@ -58,6 +59,7 @@ public class Branch{
     public ArrayList<Car> getInventory() {
         return inventory;
     }
+
     public void setInventory(ArrayList<Car> inventory) {
         this.inventory = inventory;
     }
@@ -65,6 +67,7 @@ public class Branch{
     public ArrayList<Member> getHomeMembers() {
         return homeMembers;
     }
+
     public void setHomeMembers(ArrayList<Member> homeMembers) {
         this.homeMembers = homeMembers;
     }
@@ -72,6 +75,7 @@ public class Branch{
     public ArrayList<Member> getAwayMembers() {
         return awayMembers;
     }
+
     public void setAwayMembers(ArrayList<Member> awayMembers) {
         this.awayMembers = awayMembers;
     }

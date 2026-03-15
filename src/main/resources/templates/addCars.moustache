@@ -10,7 +10,7 @@
   <label>Brand:</label>
   <input type="text" name="brand" required placeholder="e.g. Toyota, Honda, Ford"><br><br>
 
-  <label>Model:</label>
+  <label>model:</label>
   <input type="text" name="model" required placeholder="e.g. Camry, Civic, Mustang"><br><br>
 
   <label>Year:</label>

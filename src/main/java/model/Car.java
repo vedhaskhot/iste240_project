@@ -69,19 +69,3 @@ public class Car {
         this.flagshipBranch = flagshipBranch;
     }
 }
-    public Member getMember() {
-        return member;
-    }
-
-    public void setMember(Member member) {
-        this.member = member;
-    }
-
-    public Branch getBranch() {
-        return branch;
-    }
-
-    public void setBranch(Branch branch) {
-        this.branch = branch;
-    }
-}

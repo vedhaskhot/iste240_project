@@ -1,19 +1,15 @@
 package edu.rit.assignment1;
 
-import Model.MembershipApplication;
 import model.Car;
 import model.Member;
+import model.MembershipApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import Model.Branch;
-import Model.Car;
-import Model.Member;
-import Model.MembershipApplication;
-
+import model.Branch;
 
 
 @Controller
@@ -24,8 +20,7 @@ public class AppController {
 
     @RequestMapping("/index")
     public String getIndexPage(){
-        return "index.html";
-    private DataService dataService;
+        return "index.html";}
 
     @GetMapping("/members")
     public String showMembers(Model model){
@@ -35,7 +30,7 @@ public class AppController {
 
     @GetMapping("/members/add")
     public String showAddMemberData(Model model){
-        model.addAttribute("branches",dataService.getAllbranches());
+        model.addAttribute("branches",dataService.getAllBranches());
         return "addMembers";
     }
 
@@ -43,7 +38,7 @@ public class AppController {
     public String addMemberData(Member memberData, Model model){
         dataService.addMembers(memberData);
         model.addAttribute("entityName","Member");
-        return "success";
+        return "success";}
 
     @GetMapping("/branches")
     public String showBranches(Model model){
@@ -75,7 +70,7 @@ public class AppController {
         model.addAttribute("entityName","Application");
         return "success";
     }
-}
+
     @GetMapping("/cars/add")
     public String showAddCars(Model model){
         return "addCars";
@@ -86,10 +81,9 @@ public class AppController {
         dataService.addCars(carData);
         model.addAttribute("entityName","Car");
         return "success";
-    }}
+    }
     @GetMapping("/branches/add")
     public String showAddBranchForm(Model model){
-        model.addAttribute("branch",new Branch());
         return "branch-add";
     }
     @PostMapping("/branches/add")

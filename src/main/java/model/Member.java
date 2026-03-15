@@ -21,12 +21,6 @@ public class Member {
         this.membername = membername;
         this.member_sponsor = member_sponsor;
         this.homeBranch = homeBranch;
-    private List<MembershipApplication> applications= new ArrayList<>();
-
-    public Member( String memberid, String membername, String member_sponsor) {
-        this.memberid = memberid;
-        this.membername = membername;
-        this.member_sponsor = member_sponsor;
     }
 
     public String getMemberid() {
@@ -35,14 +29,6 @@ public class Member {
 
     public void setMemberid(String memberid) {
         this.memberid = memberid;
-    }
-
-    public String getMembername() {
-        return membername;
-    }
-
-    public void setMembername(String membername) {
-        this.membername = membername;
     }
 
     public String getMember_sponsor() {
@@ -69,11 +55,4 @@ public class Member {
         this.homeBranch = homeBranch;
     }
 
-    public List<MembershipApplication> getApplications() {
-        return applications;
-    }
-
-    public void setApplications(List<MembershipApplication> applications) {
-        this.applications = applications;
-    }
 }
