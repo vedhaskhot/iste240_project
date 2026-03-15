@@ -1,14 +1,20 @@
-package Model;
+package model;
+
 
 public class MembershipApplication {
     private String applicationId;
     private String applicantName;
+    private String sponsorMemberId;
     private Member sponsor;
 
-    public MembershipApplication(String applicationId, String applicantName, Member sponsor) {
+
+    public MembershipApplication(String applicationId, String applicantName, String sponsorMemberId) {
         this.applicationId = applicationId;
         this.applicantName = applicantName;
-        this.sponsor = sponsor;
+        this.sponsorMemberId = sponsorMemberId;
+    }
+    public MembershipApplication(){
+
     }
 
     public String getApplicationId() {
@@ -27,6 +33,15 @@ public class MembershipApplication {
         this.applicantName = applicantName;
     }
 
+    public String getSponsorMemberId() {
+        return sponsorMemberId;
+    }
+
+    public void setSponsorMemberId(String sponsorMemberId) {
+        this.sponsorMemberId = sponsorMemberId;
+    }
+
+
     public Member getSponsor() {
         return sponsor;
     }
@@ -34,4 +49,6 @@ public class MembershipApplication {
     public void setSponsor(Member sponsor) {
         this.sponsor = sponsor;
     }
+
+
 }

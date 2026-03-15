@@ -1,12 +1,16 @@
 package edu.rit.assignment1;
 
-import model.MembershipApplication;
+import model.Car;
+import model.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import model.Branch;
+
+
 
 @Controller
 public class AppController {
@@ -14,14 +18,64 @@ public class AppController {
     @Autowired
     private DataService dataService;
 
-
-    @GetMapping("/")
-    public String home(){
-        return "index";
+    @RequestMapping("/index")
+    public String getIndexPage() {
+        return "index.html";
     }
 
+    @GetMapping("/cars")
+    public String showCars (Model model){
+        model.addAttribute("members", dataService.getAllCars());
+        return "cars";
+    }
 
+    @GetMapping("/cars/add")
+    public String showAddCars (Model model){
+        model.addAttribute("car",new Car());
+        return "addCars";
+    }
 
+    @PostMapping("/cars/add")
+    public String addCars (Car carData, Model model){
+        dataService.addCars(carData);
+        model.addAttribute("entityName", "Car");
+        return "success";
+    }
+
+    @GetMapping("/members")
+    public String showMembers(Model model){
+        model.addAttribute("members", dataService.getAllMembers());
+        return "members";
+    }
+
+    @GetMapping("/members/add")
+    public String showAddMemberData(Model model){
+        model.addAttribute("member",new Member());
+        return "addMembers";
+    }
+
+    @PostMapping("/members/add")
+    public String addMemberData(Member memberData, Model model){
+        dataService.addMembers(memberData);
+        model.addAttribute("entityName","Member");
+        return "success";
+    }
+    @GetMapping("/branches")
+    public String showBranches(Model model){
+        model.addAttribute("branches",dataService.getAllBranches());
+        return "branches";
+    }
+    @GetMapping("/branches/add")
+    public String showAddBranchForm(Model model){
+        model.addAttribute("branch",new Branch());
+        return "branch-add";
+    }
+    @PostMapping("/branches/add")
+    public String addBranch( Branch branch, Model model) {
+        dataService.addBranch(branch);
+        model.addAttribute("entityName","branch");
+        return "success";
+    }
     @GetMapping("/applications")
     public String showApplications(Model model){
         model.addAttribute("applications", dataService.getAllApplications());
@@ -42,4 +96,5 @@ public class AppController {
         model.addAttribute("entityName", "Application");
         return "success";
     }
+
 }
