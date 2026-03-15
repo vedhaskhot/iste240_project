@@ -1,9 +1,5 @@
 package model;
 
-import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +17,6 @@ public class Member {
         this.membername = membername;
         this.member_sponsor = member_sponsor;
         this.homeBranch = homeBranch;
-    }
-
-    public Member( String memberid, String membername, String member_sponsor) {
-        this.memberid = memberid;
-        this.membername = membername;
-        this.member_sponsor = member_sponsor;
     }
 
     public String getMemberid() {

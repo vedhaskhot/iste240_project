@@ -7,10 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import Model.Branch;
-import Model.Car;
-import Model.Member;
-import Model.MembershipApplication;
 
 
 @Controller
@@ -32,7 +28,7 @@ public class AppController {
 
     @GetMapping("/members/add")
     public String showAddMemberData(Model model){
-        model.addAttribute("branches",dataService.getAllbranches());
+        model.addAttribute("branches",dataService.getAllBranches());
         return "addMembers";
     }
 

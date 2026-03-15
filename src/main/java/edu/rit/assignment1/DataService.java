@@ -3,12 +3,6 @@ package edu.rit.assignment1;
 import model.Branch;
 import model.Member;
 import org.springframework.stereotype.Service;
-import Model.Branch;
-import Model.Car;
-import Model.Member;
-import Model.MembershipApplication;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +29,7 @@ public class DataService {
         members.add(newMember);
     }
 
-    public List<Branch> getAllbranches() {
+    public List<Branch> getAllBranches() {
         return branches;
     }
 }
