@@ -41,26 +41,5 @@ public class AppController {
         dataService.addMembers(memberData);
         model.addAttribute("entityName","Member");
         return "success";
-
-    @GetMapping("/")
-    public String home(){
-        return "index.html";
     }
-    @GetMapping("/branches")
-    public String showBranches(Model model){
-        model.addAttribute("branches",dataService.getAllBranches());
-        return "branches";
-    }
-    @GetMapping("/branches/add")
-    public String showAddBranchForm(Model model){
-        model.addAttribute("branch",new Branch());
-        return "branch-add";
-    }
-    @PostMapping("/branches/add")
-    public String addBranch( Branch branch, Model model) {
-        dataService.addBranch(branch);
-        model.addAttribute("entityName","branch");
-        return "success";
-    }
-
 }
