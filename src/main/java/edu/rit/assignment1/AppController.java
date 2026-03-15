@@ -30,6 +30,7 @@ public class AppController {
 
     @GetMapping("/cars/add")
     public String showAddCars (Model model){
+        model.addAttribute("car",new Car());
         return "addCars";
     }
 

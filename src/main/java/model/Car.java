@@ -20,6 +20,9 @@ public class Car {
         this.price = price;
     }
 
+    public Car(){
+
+    }
 
     public String getBrand() {
         return brand;
