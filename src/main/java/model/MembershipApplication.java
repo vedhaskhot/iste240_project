@@ -1,9 +1,12 @@
 package model;
 
+
 public class MembershipApplication {
     private String applicationId;
     private String applicantName;
     private String sponsorMemberId;
+    private Member sponsor;
+
 
     public MembershipApplication(String applicationId, String applicantName, String sponsorMemberId) {
         this.applicationId = applicationId;
@@ -34,5 +37,15 @@ public class MembershipApplication {
     public void setSponsorMemberId(String sponsorMemberId) {
         this.sponsorMemberId = sponsorMemberId;
     }
+
+
+    public Member getSponsor() {
+        return sponsor;
+    }
+
+    public void setSponsor(Member sponsor) {
+        this.sponsor = sponsor;
+    }
+
 
 }

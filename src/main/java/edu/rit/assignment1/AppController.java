@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import model.Branch;
+
 
 
 @Controller
@@ -56,6 +58,22 @@ public class AppController {
     public String addMemberData(Member memberData, Model model){
         dataService.addMembers(memberData);
         model.addAttribute("entityName","Member");
+        return "success";
+    }
+    @GetMapping("/branches")
+    public String showBranches(Model model){
+        model.addAttribute("branches",dataService.getAllBranches());
+        return "branches";
+    }
+    @GetMapping("/branches/add")
+    public String showAddBranchForm(Model model){
+        model.addAttribute("branch",new Branch());
+        return "branch-add";
+    }
+    @PostMapping("/branches/add")
+    public String addBranch( Branch branch, Model model) {
+        dataService.addBranch(branch);
+        model.addAttribute("entityName","branch");
         return "success";
     }
 
