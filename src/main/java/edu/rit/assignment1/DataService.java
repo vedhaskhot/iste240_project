@@ -1,9 +1,9 @@
 package edu.rit.assignment1;
 
-import Model.Branch;
-import Model.Car;
-import Model.Member;
-import Model.MembershipApplication;
+import model.Branch;
+import model.Car;
+import model.Member;
+import model.MembershipApplication;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

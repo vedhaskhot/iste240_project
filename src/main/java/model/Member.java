@@ -8,9 +8,9 @@ public class Member {
     private String memberid;
     private String membername;
     private String member_sponsor;
-    private List<Car> usage_history =  new ArrayList<>();
+
     private Branch homeBranch;
-    private List<MembershipApplication> applications= new ArrayList<>();
+    ;
 
     public Member( String memberid, String membername, String member_sponsor) {
         this.memberid = memberid;
@@ -42,13 +42,7 @@ public class Member {
         this.member_sponsor = member_sponsor;
     }
 
-    public List<Car> getUsage_history() {
-        return usage_history;
-    }
 
-    public void setUsage_history(List<Car> usage_history) {
-        this.usage_history = usage_history;
-    }
 
     public Branch getHomeBranch() {
         return homeBranch;
@@ -58,11 +52,5 @@ public class Member {
         this.homeBranch = homeBranch;
     }
 
-    public List<MembershipApplication> getApplications() {
-        return applications;
-    }
 
-    public void setApplications(List<MembershipApplication> applications) {
-        this.applications = applications;
-    }
 }
