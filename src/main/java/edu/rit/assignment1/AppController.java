@@ -20,7 +20,7 @@ public class AppController {
 
     @RequestMapping("/index")
     public String getIndexPage(){
-        return "index.html";}
+        return "index";}
 
     @GetMapping("/members")
     public String showMembers(Model model){
@@ -61,7 +61,7 @@ public class AppController {
     @GetMapping("/applications/add")
     public String showAddApplication(Model model){
         model.addAttribute("members",dataService.getAllMembers());
-        return "addApplication";
+        return "application-add";
     }
 
     @PostMapping("/applications/add")
