@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EliteDrive - Members</title>
+</head>
+<body>
+<h1>Member List</h1>
+
+<table border="1">
+    <tr>
+        <th>Member ID</th>
+        <th>Name</th>
+        <th>Sponsor ID</th>
+        <th>Home Branch</th>
+    </tr>
+    {{#members}}
+    <tr>
+        <td>{{memberid}}</td>
+        <td>{{membername}}</td>
+        <td>{{member_sponsor}}</td>
+        <td>{{homeBranch.city}}</td>
+    </tr>
+    {{/members}}
+    {{^members}}
+    <tr>
+        <td colspan="4">No members found</td>
+    </tr>
+    {{/members}}
+</table>
+
+<br>
+<a href="/members/add">Add New Member</a>
+<br>
+<a href="/">Back to Home</a>
+</body>
+</html>

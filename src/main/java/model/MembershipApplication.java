@@ -34,4 +34,5 @@ public class MembershipApplication {
     public void setSponsorMemberId(String sponsorMemberId) {
         this.sponsorMemberId = sponsorMemberId;
     }
+
 }

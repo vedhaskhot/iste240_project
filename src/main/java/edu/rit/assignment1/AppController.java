@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-
 @Controller
 public class AppController {
 
     @Autowired
-    DataService dataService;
+    private DataService dataService;
 
     @RequestMapping("/index")
     public String getIndexPage() {
@@ -40,5 +39,24 @@ public class AppController {
         model.addAttribute("entityName", "Car");
         return "success";
     }
-}
 
+    @GetMapping("/members")
+    public String showMembers(Model model){
+        model.addAttribute("members", dataService.getAllMembers());
+        return "members";
+    }
+
+    @GetMapping("/members/add")
+    public String showAddMemberData(Model model){
+        model.addAttribute("member",new Member());
+        return "addMembers";
+    }
+
+    @PostMapping("/members/add")
+    public String addMemberData(Member memberData, Model model){
+        dataService.addMembers(memberData);
+        model.addAttribute("entityName","Member");
+        return "success";
+    }
+
+}
