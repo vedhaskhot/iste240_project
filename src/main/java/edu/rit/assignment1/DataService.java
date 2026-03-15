@@ -33,8 +33,18 @@ public class DataService {
         branches.add(branch1);
         branches.add(branch2);
 
-        applications.add(new MembershipApplication("AP1000", "Morris Kernal", "M001"));
-        applications.add(new MembershipApplication("AP1001", "Ben Davis", "M002"));
+        MembershipApplication app1 = new MembershipApplication("AP1000", "Morris Kernal", "M001");
+        MembershipApplication app2 = new MembershipApplication("AP1001", "Ben Davis", "M002");
+
+
+        app1.setSponsor(alice);
+        app2.setSponsor(kermit);
+
+        applications.add(app1);
+        applications.add(app2);
+        alice.setHomeBranch(branch1);
+        kermit.setHomeBranch(branch2);
+
     }
 
     public List<Car> getAllCars() {

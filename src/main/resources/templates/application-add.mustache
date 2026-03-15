@@ -17,6 +17,14 @@
         <label>Sponsor ID:</label>
         <input type="text" name="sponsorMemberId" placeholder="e.g. M001"><br><br>
 
+        <label>Sponsor:</label>
+                <select name="sponsor.memberid" required>
+                    <option value="">-- Select Sponsor --</option>
+                    {{#members}}
+                    <option value="{{memberid}}">{{membername}} ({{memberid}})</option>
+                    {{/members}}
+                </select><br><br>
+
         <button type="submit">Submit Application</button>
     </form>
 
