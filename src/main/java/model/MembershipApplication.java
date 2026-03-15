@@ -1,16 +1,14 @@
 package model;
 
-import org.springframework.stereotype.Component;
-
 public class MembershipApplication {
     private String applicationId;
     private String applicantName;
-    private Member sponsor;
+    private String sponsorMemberId;
 
-    public MembershipApplication(String applicationId, String applicantName, Member sponsor) {
+    public MembershipApplication(String applicationId, String applicantName, String sponsorMemberId) {
         this.applicationId = applicationId;
         this.applicantName = applicantName;
-        this.sponsor = sponsor;
+        this.sponsorMemberId = sponsorMemberId;
     }
 
     public String getApplicationId() {
@@ -29,11 +27,11 @@ public class MembershipApplication {
         this.applicantName = applicantName;
     }
 
-    public Member getSponsor() {
-        return sponsor;
+    public String getSponsorMemberId() {
+        return sponsorMemberId;
     }
 
-    public void setSponsor(Member sponsor) {
-        this.sponsor = sponsor;
+    public void setSponsorMemberId(String sponsorMemberId) {
+        this.sponsorMemberId = sponsorMemberId;
     }
 }

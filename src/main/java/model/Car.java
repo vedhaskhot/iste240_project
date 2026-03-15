@@ -12,13 +12,6 @@ public class Car {
     private int year;
     private double price;
     private Branch flagshipBranch;
-    private Member member;
-    private Branch branch;
-
-
-    public Car() {
-    }
-
 
     public Car(String brand, String model, int year, double price) {
         this.brand = brand;
@@ -27,6 +20,9 @@ public class Car {
         this.price = price;
     }
 
+    public Car(){
+
+    }
 
     public String getBrand() {
         return brand;
