@@ -1,36 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>EliteDrive - Add Member</title>
+    <meta charset="UTF-8">
+    <title>EliteDrive - New Application</title>
 </head>
 <body>
-<h1>Add New Member</h1>
+    <h1>Submit Membership Application</h1>
 
-<form action="/members/add" method="post">
-    <label>Member ID:</label>
-    <input type="text" name="memberid" required><br><br>
+    <form action="/applications/add" method="post">
+        <label>Application ID:</label>
+        <input type="text" name="applicationId" required placeholder="e.g. AP1000"><br><br>
 
-    <label>Name:</label>
-    <input type="text" name="membername" required><br><br>
+        <label>Applicant Name:</label>
+        <input type="text" name="applicantName" required placeholder="Enter full name"><br><br>
 
-    <label>Sponsor ID:</label>
-    <input type="text" name="member_sponsor"><br><br>
+        <label>Sponsor ID:</label>
+        <input type="text" name="sponsorMemberId" placeholder="e.g. M001"><br><br>
 
-    <!-- DROPDOWN for Home Branch (LINK 1) -->
-    <label>Home Branch:</label>
-    <select name="homeBranch.branchID" required>
-        <option value="">-- Select Home Branch --</option>
-        {{#branches}}
-        <option value="{{branchID}}">{{city}} ({{branchID}})</option>
-        {{/branches}}
-    </select><br><br>
+        <button type="submit">Submit Application</button>
+    </form>
 
-    <button type="submit">Add Member</button>
-</form>
-
-<br>
-<a href="/members">Back to Members</a>
-<br>
-<a href="/">Home</a>
+    <br>
+    <a href="/applications">Back to Applications</a>
+    <br>
+    <a href="/">Home</a>
 </body>
 </html>

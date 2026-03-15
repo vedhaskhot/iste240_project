@@ -28,7 +28,7 @@ public class AppController {
 
     @GetMapping("/members/add")
     public String showAddMemberData(Model model){
-        model.addAttribute("branches",dataService.getAllBranches());
+        model.addAttribute("member",new Member());
         return "addMembers";
     }
 

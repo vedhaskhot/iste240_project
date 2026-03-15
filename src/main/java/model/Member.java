@@ -12,11 +12,13 @@ public class Member {
     private List<Car> usage_history =  new ArrayList<>();
     private Branch homeBranch;
 
-    public Member( String memberid, String membername, String member_sponsor, Branch homeBranch) {
+    public Member( String memberid, String membername, String member_sponsor) {
         this.memberid = memberid;
         this.membername = membername;
         this.member_sponsor = member_sponsor;
-        this.homeBranch = homeBranch;
+    }
+
+    public Member() {
     }
 
     public String getMemberid() {

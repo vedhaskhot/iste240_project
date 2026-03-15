@@ -9,13 +9,11 @@ import java.util.List;
 @Service
 public class DataService {
     private List<Member> members = new ArrayList<>();
-    private List<Branch> branches = new ArrayList<>();
 
     public DataService(){
-        Branch london = new Branch("B001","London", "Winfrey Street", "Boris Johnson");
 
-        Member alice = new Member("M001","Alice Hoverman","Bob Burker", london);
-        Member kermit = new Member("M002","Kermit Toader","Bob Burker", london);
+        Member alice = new Member("M001","Alice Hoverman","Bob Burker");
+        Member kermit = new Member("M002","Kermit Toader","Bob Burker");
 
         members.add(alice);
         members.add(kermit);
@@ -29,7 +27,4 @@ public class DataService {
         members.add(newMember);
     }
 
-    public List<Branch> getAllBranches() {
-        return branches;
-    }
 }
