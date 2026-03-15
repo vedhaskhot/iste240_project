@@ -21,7 +21,7 @@ public class Member {
         this.membername = membername;
         this.member_sponsor = member_sponsor;
         this.homeBranch = homeBranch;
-    private List<MembershipApplication> applications= new ArrayList<>();
+    }
 
     public Member( String memberid, String membername, String member_sponsor) {
         this.memberid = memberid;
@@ -69,11 +69,4 @@ public class Member {
         this.homeBranch = homeBranch;
     }
 
-    public List<MembershipApplication> getApplications() {
-        return applications;
-    }
-
-    public void setApplications(List<MembershipApplication> applications) {
-        this.applications = applications;
-    }
 }
