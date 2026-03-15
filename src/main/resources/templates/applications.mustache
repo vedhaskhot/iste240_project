@@ -1,34 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>EliteDrive - Applications</title>
 </head>
 <body>
-<h1>Membership Applications</h1>
+    <h1>Membership Applications</h1>
 
-<table border="1">
-    <tr>
-        <th>Application ID</th>
-        <th>Applicant</th>
-        <th>Sponsor</th>
-        <th>Preferred Branch</th>
-        <th>Status</th>
-    </tr>
-    {{#applications}}
+    <table border="1">
+        <tr>
+            <th>Application ID</th>
+            <th>Applicant Name</th>
+            <th>Sponsor ID</th>
+        </tr>
+        {{#applications}}
         <tr>
             <td>{{applicationId}}</td>
             <td>{{applicantName}}</td>
             <td>{{sponsorMemberId}}</td>
-            <td>{{preferredBranch.city}}</td>
-            <td>{{status}}</td>
         </tr>
-    {{/applications}}
-</table>
+        {{/applications}}
+    </table>
 
-<br>
-<a href="/applications/add">New Application</a>
-<br>
-<a href="/">Back to Home</a>
+    <br>
+    <a href="/applications/add">New Application</a>
+    <br>
+    <a href="/">Home</a>
 </body>
 </html>

@@ -12,11 +12,7 @@ public class Branch{
     private String city;
     private String address;
     private String branchManager;
-    private ArrayList<Car> inventory= new ArrayList<>();
-    private ArrayList<Member> homeMembers= new ArrayList<>();
-    private ArrayList<Member> awayMembers= new ArrayList<>();
 
-    private ArrayList<MembershipApplication> applications= new ArrayList<>();
     public Branch(String branchID, String city, String address, String branchManager){
         this.branchID = branchID;
         this.city = city;
@@ -55,32 +51,5 @@ public class Branch{
         this.branchManager = branchManager;
     }
 
-    public ArrayList<Car> getInventory() {
-        return inventory;
-    }
-    public void setInventory(ArrayList<Car> inventory) {
-        this.inventory = inventory;
-    }
 
-    public ArrayList<Member> getHomeMembers() {
-        return homeMembers;
-    }
-    public void setHomeMembers(ArrayList<Member> homeMembers) {
-        this.homeMembers = homeMembers;
-    }
-
-    public ArrayList<Member> getAwayMembers() {
-        return awayMembers;
-    }
-    public void setAwayMembers(ArrayList<Member> awayMembers) {
-        this.awayMembers = awayMembers;
-    }
-
-    public ArrayList<MembershipApplication> getApplications() {
-        return applications;
-    }
-
-    public void setApplications(ArrayList<MembershipApplication> applications) {
-        this.applications = applications;
-    }
 }

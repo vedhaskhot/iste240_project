@@ -11,9 +11,7 @@ public class Car {
     private String model;
     private int year;
     private double price;
-    private Branch flagshipBranch;
-    private Member member;
-    private Branch branch;
+
 
 
     public Car() {
@@ -61,27 +59,8 @@ public class Car {
         this.price = price;
     }
 
-    public Branch getFlagshipBranch() {
-        return flagshipBranch;
-    }
 
-    public void setFlagshipBranch(Branch flagshipBranch) {
-        this.flagshipBranch = flagshipBranch;
-    }
+
 }
-    public Member getMember() {
-        return member;
-    }
 
-    public void setMember(Member member) {
-        this.member = member;
-    }
 
-    public Branch getBranch() {
-        return branch;
-    }
-
-    public void setBranch(Branch branch) {
-        this.branch = branch;
-    }
-}
