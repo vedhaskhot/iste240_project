@@ -1,5 +1,6 @@
 package edu.rit.assignment1;
 
+import model.Car;
 import model.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +17,29 @@ public class AppController {
     private DataService dataService;
 
     @RequestMapping("/index")
-    public String getIndexPage(){
-        return "index";
-
+    public String getIndexPage() {
+        return "index.html";
     }
+
+    @GetMapping("/cars")
+    public String showCars (Model model){
+        model.addAttribute("members", dataService.getAllCars());
+        return "cars";
+    }
+
+    @GetMapping("/cars/add")
+    public String showAddCars (Model model){
+        model.addAttribute("car",new Car());
+        return "addCars";
+    }
+
+    @PostMapping("/cars/add")
+    public String addCars (Car carData, Model model){
+        dataService.addCars(carData);
+        model.addAttribute("entityName", "Car");
+        return "success";
+    }
+
     @GetMapping("/members")
     public String showMembers(Model model){
         model.addAttribute("members", dataService.getAllMembers());
@@ -38,4 +58,5 @@ public class AppController {
         model.addAttribute("entityName","Member");
         return "success";
     }
+
 }

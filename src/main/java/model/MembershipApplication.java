@@ -1,6 +1,5 @@
 package model;
 
-
 public class MembershipApplication {
     private String applicationId;
     private String applicantName;

@@ -8,6 +8,7 @@ public class Car {
     private String model;
     private int year;
     private double price;
+    private Branch flagshipBranch;
 
     public Car(String brand, String model, int year, double price) {
         this.brand = brand;
@@ -16,6 +17,9 @@ public class Car {
         this.price = price;
     }
 
+    public Car(){
+
+    }
 
     public String getBrand() {
         return brand;
@@ -50,4 +54,11 @@ public class Car {
         this.price = price;
     }
 
+    public Branch getFlagshipBranch() {
+        return flagshipBranch;
+    }
+
+    public void setFlagshipBranch(Branch flagshipBranch) {
+        this.flagshipBranch = flagshipBranch;
+    }
 }
