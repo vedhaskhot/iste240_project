@@ -1,5 +1,7 @@
 package edu.rit.assignment1;
 
+import model.Car;
+import model.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +18,47 @@ public class AppController {
     @Autowired
     private DataService dataService;
 
-    @GetMapping("/")
-    public String home(){
+    @RequestMapping("/index")
+    public String getIndexPage() {
         return "index.html";
+    }
+
+    @GetMapping("/cars")
+    public String showCars (Model model){
+        model.addAttribute("members", dataService.getAllCars());
+        return "cars";
+    }
+
+    @GetMapping("/cars/add")
+    public String showAddCars (Model model){
+        model.addAttribute("car",new Car());
+        return "addCars";
+    }
+
+    @PostMapping("/cars/add")
+    public String addCars (Car carData, Model model){
+        dataService.addCars(carData);
+        model.addAttribute("entityName", "Car");
+        return "success";
+    }
+
+    @GetMapping("/members")
+    public String showMembers(Model model){
+        model.addAttribute("members", dataService.getAllMembers());
+        return "members";
+    }
+
+    @GetMapping("/members/add")
+    public String showAddMemberData(Model model){
+        model.addAttribute("member",new Member());
+        return "addMembers";
+    }
+
+    @PostMapping("/members/add")
+    public String addMemberData(Member memberData, Model model){
+        dataService.addMembers(memberData);
+        model.addAttribute("entityName","Member");
+        return "success";
     }
     @GetMapping("/branches")
     public String showBranches(Model model){
