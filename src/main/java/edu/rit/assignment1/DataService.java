@@ -39,22 +39,3 @@ public class DataService {
         return branches;
     }
 }
-    private List<Car> cars = new ArrayList<>();
-    private List<MembershipApplication> applications = new ArrayList<>();
-
-    public DataService() {
-        Branch branch1 = new Branch("B001", "New York", "123 Main St", "John");
-        Branch branch2 = new Branch("B002", "Los Angeles", "456 Oak Ave", "Jane");
-        branches.add(branch1);
-        branches.add(branch2);
-
-    }
-        public List<Branch> getAllBranches () {
-            return branches;
-        }
-
-
-        public void addBranch (Branch branch){
-            branches.add(branch);
-        }
-    }
