@@ -1,4 +1,4 @@
-Assignment 1
+ISTE 240 Project:
 
 Group Members
 Vedhas Vijay Khot - 412000445
