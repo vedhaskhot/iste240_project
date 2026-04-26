@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars - EliteDrive UAE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #0a0a0a; color: #f0f0f0; }
+        .navbar-brand { color: #c9a84c !important; font-weight: bold; }
+        .card { background-color: #1a1a1a; border: 1px solid #c9a84c; }
+        .table { color: #f0f0f0; }
+        .table thead { background-color: #c9a84c; color: #000; }
+        .btn-gold { background-color: #c9a84c; color: #000; font-weight: bold; }
+        .btn-gold:hover { background-color: #b8962e; }
+        h2 { color: #c9a84c; }
+        .modal-content { background-color: #1a1a1a; color: #f0f0f0; }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-dark bg-dark px-4">
+    <span class="navbar-brand">🏎️ EliteDrive UAE</span>
+    <a href="index.html" class="btn btn-outline-warning btn-sm">← Back to Home</a>
+</nav>
+
+<div class="container mt-4">
+    <h2>🚗 Car Fleet Management</h2>
+    <p class="text-muted">Manage all luxury vehicles in the EliteDrive fleet</p>
+
+    <!-- Search + Add -->
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <input type="text" id="searchInput" class="form-control bg-dark text-white border-warning"
+                   placeholder="🔍 Search by brand or model..." oninput="searchCars()">
+        </div>
+        <div class="col-md-6 text-end">
+            <button class="btn btn-gold" onclick="openAddModal()">+ Add New Car</button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="card p-3">
+        <table class="table table-hover align-middle">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Price/Day (AED)</th>
+                <th>Seats</th>
+                <th>Available</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="carsTableBody">
+            <tr><td colspan="8" class="text-center">Loading...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="carModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header border-warning">
+                <h5 class="modal-title text-warning" id="modalTitle">Add New Car</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="carId">
+                <div class="mb-3">
+                    <label class="form-label">Brand</label>
+                    <input type="text" id="carBrand" class="form-control bg-secondary text-white" placeholder="e.g. Ferrari">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Model</label>
+                    <input type="text" id="carModel" class="form-control bg-secondary text-white" placeholder="e.g. 488 GTB">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Year</label>
+                    <input type="number" id="carYear" class="form-control bg-secondary text-white" placeholder="e.g. 2024">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Price Per Day (AED)</label>
+                    <input type="number" id="carPrice" class="form-control bg-secondary text-white" placeholder="e.g. 2500">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Number of Seats</label>
+                    <input type="number" id="carSeats" class="form-control bg-secondary text-white" placeholder="e.g. 2">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Available</label>
+                    <select id="carAvailable" class="form-select bg-secondary text-white">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer border-warning">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button class="btn btn-gold" onclick="saveCar()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
+    <div id="toast" class="toast align-items-center text-white bg-success border-0">
+        <div class="d-flex">
+            <div class="toast-body" id="toastMsg">Done!</div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const API = 'http://localhost:8080/api/cars';
+    let editingId = null;
+
+    async function loadCars() {
+        const res = await fetch(API);
+        const cars = await res.json();
+        renderTable(cars);
+    }
+
+    function renderTable(cars) {
+        const tbody = document.getElementById('carsTableBody');
+        if (cars.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="8" class="text-center text-muted">No cars found</td></tr>';
+            return;
+        }
+        tbody.innerHTML = cars.map(c => `
+            <tr>
+                <td>${c.id}</td>
+                <td><strong>${c.brand}</strong></td>
+                <td>${c.model}</td>
+                <td>${c.year}</td>
+                <td>AED ${c.pricePerDay.toLocaleString()}</td>
+                <td>${c.numberOfSeats}</td>
+                <td>
+                    <span class="badge ${c.available ? 'bg-success' : 'bg-danger'}">
+                        ${c.available ? '✅ Yes' : '❌ No'}
+                    </span>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-warning me-1" onclick="openEditModal(${c.id})">✏️ Edit</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteCar(${c.id})">🗑️ Delete</button>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    async function searchCars() {
+        const keyword = document.getElementById('searchInput').value;
+        if (keyword.length === 0) { loadCars(); return; }
+        const res = await fetch(`${API}/search?keyword=${keyword}`);
+        const cars = await res.json();
+        renderTable(cars);
+    }
+
+    function openAddModal() {
+        editingId = null;
+        document.getElementById('modalTitle').textContent = 'Add New Car';
+        document.getElementById('carId').value = '';
+        document.getElementById('carBrand').value = '';
+        document.getElementById('carModel').value = '';
+        document.getElementById('carYear').value = '';
+        document.getElementById('carPrice').value = '';
+        document.getElementById('carSeats').value = '';
+        document.getElementById('carAvailable').value = 'true';
+        new bootstrap.Modal(document.getElementById('carModal')).show();
+    }
+
+    async function openEditModal(id) {
+        editingId = id;
+        const res = await fetch(`${API}/${id}`);
+        const c = await res.json();
+        document.getElementById('modalTitle').textContent = 'Edit Car';
+        document.getElementById('carBrand').value = c.brand;
+        document.getElementById('carModel').value = c.model;
+        document.getElementById('carYear').value = c.year;
+        document.getElementById('carPrice').value = c.pricePerDay;
+        document.getElementById('carSeats').value = c.numberOfSeats;
+        document.getElementById('carAvailable').value = c.available.toString();
+        new bootstrap.Modal(document.getElementById('carModal')).show();
+    }
+
+    async function saveCar() {
+        const car = {
+            brand: document.getElementById('carBrand').value,
+            model: document.getElementById('carModel').value,
+            year: parseInt(document.getElementById('carYear').value),
+            pricePerDay: parseFloat(document.getElementById('carPrice').value),
+            numberOfSeats: parseInt(document.getElementById('carSeats').value),
+            available: document.getElementById('carAvailable').value === 'true'
+        };
+
+        if (editingId) {
+            await fetch(`${API}/${editingId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(car)
+            });
+            showToast('Car updated successfully!');
+        } else {
+            await fetch(API, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(car)
+            });
+            showToast('New car added!');
+        }
+
+        bootstrap.Modal.getInstance(document.getElementById('carModal')).hide();
+        loadCars();
+    }
+
+    async function deleteCar(id) {
+        if (confirm('Delete this car from the fleet?')) {
+            await fetch(`${API}/${id}`, { method: 'DELETE' });
+            showToast('Car deleted.', 'bg-danger');
+            loadCars();
+        }
+    }
+
+    function showToast(message, color = 'bg-success') {
+        const toast = document.getElementById('toast');
+        toast.className = `toast align-items-center text-white ${color} border-0`;
+        document.getElementById('toastMsg').textContent = message;
+        new bootstrap.Toast(toast).show();
+    }
+
+    loadCars();
+</script>
+</body>
+</html>
