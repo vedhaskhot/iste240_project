@@ -5,34 +5,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cars - EliteDrive UAE</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background-color: #0a0a0a; color: #f0f0f0; }
-        .navbar-brand { color: #c9a84c !important; font-weight: bold; }
-        .card { background-color: #1a1a1a; border: 1px solid #c9a84c; }
-        .table { color: #f0f0f0; }
-        .table thead { background-color: #c9a84c; color: #000; }
-        .btn-gold { background-color: #c9a84c; color: #000; font-weight: bold; }
-        .btn-gold:hover { background-color: #b8962e; }
-        h2 { color: #c9a84c; }
-        .modal-content { background-color: #1a1a1a; color: #f0f0f0; }
+        body {
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .navbar {
+            background-color: #1a1a1a;
+            border-bottom: 2px solid #c9a84c;
+            padding: 5px 0;
+            margin-bottom: 30px;
+        }
+        .navbar-brand {
+            color: #c9a84c !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .navbar-brand i {
+            margin-right: 10px;
+        }
+        .nav-link {
+            color: #f0f0f0 !important;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+            padding: 8px 0;
+        }
+        .nav-link:hover {
+            color: #c9a84c !important;
+        }
+        .card {
+            background-color: #1a1a1a;
+            border: 1px solid #c9a84c;
+        }
+        .table {
+            color: #f0f0f0;
+        }
+        .table thead {
+            background-color: #c9a84c;
+            color: #000;
+        }
+        .btn-gold {
+            background-color: #c9a84c;
+            color: #000;
+            font-weight: bold;
+        }
+        .btn-gold:hover {
+            background-color: #b8962e;
+        }
+        h2 {
+            color: #c9a84c;
+        }
+        .modal-content {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            border: 1px solid #c9a84c;
+        }
+        .modal-header {
+            border-bottom: 1px solid #c9a84c;
+        }
+        .modal-footer {
+            border-top: 1px solid #c9a84c;
+        }
+        .form-control, .form-select {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            color: #f0f0f0;
+        }
+        .form-control:focus, .form-select:focus {
+            background-color: #333;
+            border-color: #c9a84c;
+            color: #fff;
+            box-shadow: 0 0 0 0.25rem rgba(201, 168, 76, 0.25);
+        }
+        label {
+            color: #c9a84c;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+        .btn-close-white {
+            filter: invert(1);
+        }
     </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-dark bg-dark px-4">
-    <span class="navbar-brand">🏎️ EliteDrive UAE</span>
-    <a href="index.html" class="btn btn-outline-warning btn-sm">← Back to Home</a>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <i class="fas fa-car"></i> EliteDrive
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="branch.html">
+                        <i class="fas fa-store"></i> Branches
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="member-management.html">
+                        <i class="fas fa-users"></i> Members
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cars.html">
+                        <i class="fas fa-car-side"></i> Cars
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="applications.html">
+                        <i class="fas fa-file-alt"></i> Applications
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
 
 <div class="container mt-4">
     <h2>🚗 Car Fleet Management</h2>
-    <p class="text-muted">Manage all luxury vehicles in the EliteDrive fleet</p>
+    
 
     <!-- Search + Add -->
     <div class="row mb-3">
         <div class="col-md-6">
-            <input type="text" id="searchInput" class="form-control bg-dark text-white border-warning"
+            <input type="text" id="searchInput" class="form-control"
                    placeholder="🔍 Search by brand or model..." oninput="searchCars()">
         </div>
         <div class="col-md-6 text-end">
@@ -42,32 +143,33 @@
 
     <!-- Table -->
     <div class="card p-3">
-        <table class="table table-hover align-middle">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Brand</th>
-                <th>Model</th>
-                <th>Year</th>
-                <th>Price/Day (AED)</th>
-                <th>Seats</th>
-                <th>Available</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody id="carsTableBody">
-            <tr><td colspan="8" class="text-center">Loading...</td></tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Price/Day (AED)</th>
+                    <th>Seats</th>
+                    <th>Available</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="carsTableBody">
+                <td><td colspan="8" class="text-center">Loading...<\/td><\/tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
-
-
+<!-- Add/Edit Modal -->
 <div class="modal fade" id="carModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header border-warning">
+            <div class="modal-header">
                 <h5 class="modal-title text-warning" id="modalTitle">Add New Car</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
@@ -75,33 +177,33 @@
                 <input type="hidden" id="carId">
                 <div class="mb-3">
                     <label class="form-label">Brand</label>
-                    <input type="text" id="carBrand" class="form-control bg-secondary text-white" placeholder="e.g. Ferrari">
+                    <input type="text" id="carBrand" class="form-control" placeholder="e.g. Ferrari">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Model</label>
-                    <input type="text" id="carModel" class="form-control bg-secondary text-white" placeholder="e.g. 488 GTB">
+                    <input type="text" id="carModel" class="form-control" placeholder="e.g. 488 GTB">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Year</label>
-                    <input type="number" id="carYear" class="form-control bg-secondary text-white" placeholder="e.g. 2024">
+                    <input type="number" id="carYear" class="form-control" placeholder="e.g. 2024">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Price Per Day (AED)</label>
-                    <input type="number" id="carPrice" class="form-control bg-secondary text-white" placeholder="e.g. 2500">
+                    <input type="number" id="carPrice" class="form-control" placeholder="e.g. 2500">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Number of Seats</label>
-                    <input type="number" id="carSeats" class="form-control bg-secondary text-white" placeholder="e.g. 2">
+                    <input type="number" id="carSeats" class="form-control" placeholder="e.g. 2">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Available</label>
-                    <select id="carAvailable" class="form-select bg-secondary text-white">
+                    <select id="carAvailable" class="form-select">
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                     </select>
                 </div>
             </div>
-            <div class="modal-footer border-warning">
+            <div class="modal-footer">
                 <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <button class="btn btn-gold" onclick="saveCar()">Save</button>
             </div>
@@ -109,6 +211,7 @@
     </div>
 </div>
 
+<!-- Toast Notification -->
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
     <div id="toast" class="toast align-items-center text-white bg-success border-0">
         <div class="d-flex">
@@ -132,26 +235,26 @@
     function renderTable(cars) {
         const tbody = document.getElementById('carsTableBody');
         if (cars.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="8" class="text-center text-muted">No cars found</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="8" class="text-center text-muted">No cars found<\/td><\/tr>';
             return;
         }
         tbody.innerHTML = cars.map(c => `
             <tr>
-                <td>${c.id}</td>
-                <td><strong>${c.brand}</strong></td>
-                <td>${c.model}</td>
-                <td>${c.year}</td>
-                <td>AED ${c.pricePerDay.toLocaleString()}</td>
-                <td>${c.numberOfSeats}</td>
+                <td>${c.id}<\/td>
+                <td><strong>${c.brand}<\/strong><\/td>
+                <td>${c.model}<\/td>
+                <td>${c.year}<\/td>
+                <td>AED ${c.pricePerDay.toLocaleString()}<\/td>
+                <td>${c.numberOfSeats}<\/td>
                 <td>
                     <span class="badge ${c.available ? 'bg-success' : 'bg-danger'}">
                         ${c.available ? '✅ Yes' : '❌ No'}
-                    </span>
-                </td>
+                    <\/span>
+                <\/td>
                 <td>
-                    <button class="btn btn-sm btn-warning me-1" onclick="openEditModal(${c.id})">✏️ Edit</button>
-                    <button class="btn btn-sm btn-danger" onclick="deleteCar(${c.id})">🗑️ Delete</button>
-                </td>
+                    <button class="btn btn-sm btn-warning me-1" onclick="openEditModal(${c.id})">✏️ Edit<\/button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteCar(${c.id})">🗑️ Delete<\/button>
+                <\/td>
             </tr>
         `).join('');
     }

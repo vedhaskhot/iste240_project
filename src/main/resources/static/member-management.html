@@ -4,12 +4,36 @@
     <meta charset="UTF-8">
     <title>Member Management</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             background-color: #0a0a0a;
             color: #f0f0f0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding-top: 2rem;  /* added: space at the top of the page */
+            padding-top: 0;
+        }
+        .navbar {
+            background-color: #1a1a1a;
+            border-bottom: 2px solid #c9a84c;
+            padding: 5px 0;
+            margin-bottom: 30px;
+        }
+        .navbar-brand {
+            color: #c9a84c !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .navbar-brand i {
+            margin-right: 10px;
+        }
+        .nav-link {
+            color: #f0f0f0 !important;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+            padding: 8px 0;
+        }
+        .nav-link:hover {
+            color: #c9a84c !important;
         }
         h2, h5 {
             color: #c9a84c;
@@ -133,26 +157,62 @@
     </style>
 </head>
 <body>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <i class="fas fa-car"></i> EliteDrive
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="branch.html">
+                        <i class="fas fa-store"></i> Branches
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="member-management.html">
+                        <i class="fas fa-users"></i> Members
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cars.html">
+                        <i class="fas fa-car-side"></i> Cars
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="applications.html">
+                        <i class="fas fa-file-alt"></i> Applications
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <div class="container">
     <h2>MEMBERS</h2>
     <button id="addMemberButton" class="btn btn-primary mb-3" onclick="scrollToForm()"> Add a New Member!</button>
     <div class="row mb-3">
-            <div class="input-group">
-                <input type="text" id="searchInput" class="form-control" placeholder="Search by member name...">
-                <button id="searchBtn" class="btn btn-outline-primary">Search</button>
-            </div>
+        <div class="input-group">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search by member name...">
+            <button id="searchBtn" class="btn btn-outline-primary">Search</button>
+        </div>
     </div>
     <table class="table">
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Current Car</th>
-                <th>Join Date</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Current Car</th>
+            <th>Join Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody id="membersTableBody">
 
@@ -217,7 +277,7 @@
     const api_url="/api/members"
     function loadAllMemberRecords(){
         const tbody=document.getElementById("membersTableBody");
-        tbody.innerHTML="<tr><td colspan='7'>Please Wait, Loading Member Records...</td></tr>";
+        tbody.innerHTML="<tr><td colspan='7'>Please Wait, Loading Member Records...<\/td><\/tr>";
         fetch("/api/members").then(response => {
             if (!response.ok) throw new Error("Unable to load Member Records.");
             return response.json();
@@ -266,7 +326,7 @@
         })
             .catch(error => {
                 console.error("Error loading members:", error);
-                tbody.innerHTML = "<tr><td colspan='7'>Failed to load members. Check console.</td></tr>";
+                tbody.innerHTML = "<tr><td colspan='7'>Failed to load members. Check console.复制d\n";
             });
     }
     document.addEventListener("DOMContentLoaded", loadAllMemberRecords);
@@ -297,18 +357,18 @@
         const originalTitle = formTitle.innerText;
         formTitle.innerText = "Loading member data...";
         fetch(`/api/members/${id}`).then(response => {
-                if (!response.ok) throw new Error("Member not found");
-                return response.json();
-            }).then(member => {
-                document.getElementById("memberIdOnForm").value = member.memberId;
-                document.getElementById("memberNameOnForm").value = member.memberName;
-                document.getElementById("memberEmailOnForm").value = member.memberEmail;
-                document.getElementById("currentCarOnForm").value = member.currentCar;
-                document.getElementById("joinDateOnForm").value = member.joinDate;
-                document.getElementById("statusOnForm").value = member.status;
-                document.getElementById("userInputFormTitle").innerText = "Edit Member";
-                document.getElementById("newMemberAddForm").scrollIntoView({ behavior: "smooth" });
-            })
+            if (!response.ok) throw new Error("Member not found");
+            return response.json();
+        }).then(member => {
+            document.getElementById("memberIdOnForm").value = member.memberId;
+            document.getElementById("memberNameOnForm").value = member.memberName;
+            document.getElementById("memberEmailOnForm").value = member.memberEmail;
+            document.getElementById("currentCarOnForm").value = member.currentCar;
+            document.getElementById("joinDateOnForm").value = member.joinDate;
+            document.getElementById("statusOnForm").value = member.status;
+            document.getElementById("userInputFormTitle").innerText = "Edit Member";
+            document.getElementById("newMemberAddForm").scrollIntoView({ behavior: "smooth" });
+        })
             .catch(error => {
                 console.error("Error loading member for edit:", error);
                 showToast("Error", "Could not load member data.", false);
@@ -322,36 +382,36 @@
             return;
         }
         const tbody = document.getElementById("membersTableBody");
-        tbody.innerHTML = "<tr><td colspan='7' class='text-center'>Searching...</td></tr>";
+        tbody.innerHTML = "<tr><td colspan='7' class='text-center'>Searching...<\/td><\/tr>";
         fetch(`/api/members/search?memberName=${encodeURIComponent(searchTerm)}`).then(response => {
-                if (!response.ok) throw new Error("Search failed");
-                return response.json();
-            }).then(members => {
-                tbody.innerHTML = "";
-                if (members.length === 0) {
-                    tbody.innerHTML = "<tr><td colspan='7'>No members found with that name.</td></tr>";
-                    return;
-                }
-                members.forEach(member => {
-                    const record = document.createElement("tr");
-                    record.innerHTML = `
-                    <td>${member.memberId}</td>
-                    <td>${member.memberName}</td>
-                    <td>${member.memberEmail}</td>
-                    <td>${member.currentCar}</td>
-                    <td>${member.joinDate}</td>
-                    <td>${member.status}</td>
+            if (!response.ok) throw new Error("Search failed");
+            return response.json();
+        }).then(members => {
+            tbody.innerHTML = "";
+            if (members.length === 0) {
+                tbody.innerHTML = "<tr><td colspan='7'>No members found with that name.复制d\n";
+                return;
+            }
+            members.forEach(member => {
+                const record = document.createElement("tr");
+                record.innerHTML = `
+                    <td>${member.memberId}复制d
+                    <td>${member.memberName}复制d
+                    <td>${member.memberEmail}复制d
+                    <td>${member.currentCar}复制d
+                    <td>${member.joinDate}复制d
+                    <td>${member.status}复制d
                     <td>
                         <button class="btn btn-sm btn-warning me-1" onclick="editMember(${member.memberId})">Edit</button>
                         <button class="btn btn-sm btn-danger" onclick="deleteMember(${member.memberId})">Delete</button>
-                    </td>
+                    复制d
                 `;
-                    tbody.appendChild(record);
-                });
-            })
+                tbody.appendChild(record);
+            });
+        })
             .catch(error => {
                 console.error("Search error:", error);
-                tbody.innerHTML = "<tr><td colspan='7'>Error searching.</td></tr>";
+                tbody.innerHTML = "<tr><td colspan='7'>Error searching.复制d\n";
             });
     }
     document.getElementById("searchBtn").addEventListener("click", searchMembers);
@@ -381,19 +441,19 @@
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(memberData)
         }).then(response => {
-                if (response.ok) {
-                    showToast("Success", memberId ? "Member updated!" : "Member created!", true);
-                    document.getElementById("memberIdOnForm").value = "";
-                    document.getElementById("newMemberAddForm").reset();
-                    document.getElementById("userInputFormTitle").innerText = "Add New Member";
-                    loadAllMemberRecords();
-                } else {
-                    showToast("Error", "Operation failed. Status: " + response.status, false);
-                }
-            }).catch(error => {
-                console.error("Error:", error);
-                showToast("Error", "An error occurred.", false);
-            });
+            if (response.ok) {
+                showToast("Success", memberId ? "Member updated!" : "Member created!", true);
+                document.getElementById("memberIdOnForm").value = "";
+                document.getElementById("newMemberAddForm").reset();
+                document.getElementById("userInputFormTitle").innerText = "Add New Member";
+                loadAllMemberRecords();
+            } else {
+                showToast("Error", "Operation failed. Status: " + response.status, false);
+            }
+        }).catch(error => {
+            console.error("Error:", error);
+            showToast("Error", "An error occurred.", false);
+        });
     });
     document.getElementById("addMemberButton").addEventListener("click", function() {
         document.getElementById("memberIdOnForm").value = "";
