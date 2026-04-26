@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Branch Management</title>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+        .navbar-brand {
+            color: #c9a84c !important;
+            font-weight: bold;
+        }
+        .card {
+            background-color: #1a1a1a;
+            border: 1px solid #c9a84c;
+        }
+        .table {
+            color: #f0f0f0;
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .table thead {
+            background-color: #c9a84c;
+            color: #000;
+        }
+        .table th, .table td {
+            border: 1px solid #444;
+            padding: 8px;
+            text-align: left;
+        }
+        .table tr:nth-child(even) {
+            background-color: #1a1a1a;
+        }
+        .btn-gold {
+            background-color: #c9a84c;
+            color: #000;
+            font-weight: bold;
+            border: none;
+            padding: 5px 10px;
+            margin: 2px;
+            cursor: pointer;
+        }
+        .btn-gold:hover {
+            background-color: #b8962e;
+        }
+        h1, h2, h3 {
+            color: #c9a84c;
+        }
+        .modal-content {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        .add-btn, .edit-btn, .delete-btn, .search-btn, .find-btn {
+            background-color: #c9a84c;
+            color: #000;
+            font-weight: bold;
+            border: none;
+            padding: 5px 10px;
+            margin: 2px;
+            cursor: pointer;
+        }
+        .add-btn:hover, .edit-btn:hover, .delete-btn:hover, .search-btn:hover, .find-btn:hover {
+            background-color: #b8962e;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+        .popup-box {
+            background-color: #1a1a1a;
+            margin: 15% auto;
+            padding: 20px;
+            width: 400px;
+            border-radius: 5px;
+            border: 1px solid #c9a84c;
+        }
+        .popup-header {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #c9a84c;
+        }
+        .popup-footer {
+            margin-top: 20px;
+            text-align: right;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background-color: #2a2a2a;
+            color: #f0f0f0;
+        }
+        .search-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #1a1a1a;
+            border-radius: 5px;
+            border: 1px solid #c9a84c;
+        }
+        .find-result {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #2a2a2a;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Branch Management</h1>
+
+    <button class="add-btn" onclick="showAddForm()">Add Branch</button>
+
+
+    <div class="search-box">
+        <h3>Find Branch by ID</h3>
+        <input type="number" id="findById" placeholder="Enter Branch ID...">
+        <button class="find-btn" onclick="findBranchById()">Find</button>
+        <div id="findResult" class="find-result"></div>
+    </div>
+
+
+    <div class="search-box">
+        <h3>Search by City</h3>
+        <input type="text" id="searchCity" placeholder="Enter city name...">
+        <button class="search-btn" onclick="searchBranches()">Search</button>
+        <button onclick="loadBranches()">Clear</button>
+    </div>
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Branch ID</th>
+            <th>City</th>
+            <th>Address</th>
+            <th>Manager</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="tableBody">
+        <tr><td colspan="5">Loading...</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Add/Edit Popup -->
+<div id="addPopup" class="popup">
+    <div class="popup-box">
+        <div class="popup-header" id="popupTitle">Add Branch</div>
+        <input type="hidden" id="editId">
+        <div id="branchIdRow">
+            Branch ID: <input type="number" id="branchId" readonly>
+        </div>
+        City: <input type="text" id="city">
+        Address: <input type="text" id="address">
+        Manager: <input type="text" id="manager">
+        <div class="popup-footer">
+            <button class="btn-gold" onclick="closeAddPopup()">Cancel</button>
+            <button class="btn-gold" onclick="saveBranch()">Save</button>
+        </div>
+    </div>
+</div>
+
+
+<div id="deletePopup" class="popup">
+    <div class="popup-box">
+        <div class="popup-header">Delete Branch</div>
+        <label>Branch ID:</label>
+        <input type="number" id="deleteId">
+        <div class="popup-footer">
+            <button class="btn-gold" onclick="closeDeletePopup()">Cancel</button>
+            <button class="btn-gold" onclick="deleteBranch()">Delete</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentId = null;
+
+    function showAddForm() {
+        currentId = null;
+        document.getElementById('branchId').value= '';
+        document.getElementById('city').value= '';
+        document.getElementById('address').value= '';
+        document.getElementById('manager').value= '';
+        document.getElementById('branchIdRow').style.display= 'none';
+        document.getElementById('popupTitle').innerHTML= 'Add Branch';
+        document.getElementById('addPopup').style.display= 'block';
+    }
+
+    function closeAddPopup() {
+        document.getElementById('addPopup').style.display = 'none';
+    }
+
+    function closeDeletePopup() {
+        document.getElementById('deletePopup').style.display = 'none';
+    }
+
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('addPopup')) {
+            document.getElementById('addPopup').style.display = 'none';
+        }
+        if (event.target == document.getElementById('deletePopup')) {
+            document.getElementById('deletePopup').style.display = 'none';
+        }
+    }
+
+
+    function loadBranches() {
+        $.ajax({
+            url: '/api/branches',
+            type: 'GET',
+            success: function(data) {
+                showTable(data);
+            },
+            error: function() {
+                alert('Failed to load branches');
+            }
+        });
+    }
+
+
+    function findBranchById() {
+        let id = document.getElementById('findById').value;
+        if (id === '') {
+            alert('Enter Branch ID');
+            return;
+        }
+        $.ajax({
+            url: '/api/branches/' + id,
+            type: 'GET',
+            success: function(data) {
+                let resultDiv = document.getElementById('findResult');
+                if (data && data.length > 0) {
+                    let b = data[0];
+                    showTable([b]);
+                    resultDiv.style.display = 'block';
+                    resultDiv.innerHTML = '<strong style="color:#c9a84c;">Found branch with ID: ' + id + '</strong>';
+                } else {
+                    showTable([]);
+                    resultDiv.style.display = 'block';
+                    resultDiv.innerHTML = '<strong style="color:red;">Branch not found with ID: ' + id + '</strong>';
+                }
+                setTimeout(function() { resultDiv.style.display = 'none'; }, 3000);
+            },
+            error: function() {
+                showTable([]);
+                let resultDiv = document.getElementById('findResult');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = '<strong style="color:red;">Branch not found with ID: ' + id + '</strong>';
+                setTimeout(function() { resultDiv.style.display = 'none'; }, 3000);
+            }
+        });
+    }
+
+
+    function searchBranches() {
+        let city = document.getElementById('searchCity').value;
+        if (city === '') {
+            loadBranches();
+            return;
+        }
+        $.ajax({
+            url: '/api/branches/search?city=' + encodeURIComponent(city),
+            type: 'GET',
+            success: function(data) {
+                showTable(data);
+            },
+            error: function() {
+                alert('Search failed');
+            }
+        });
+    }
+
+
+    function showTable(data) {
+        let html = '';
+        if (data.length === 0) {
+            html = '<tr><td colspan="5">No branches found</td></tr>';
+        } else {
+            for (let i = 0; i < data.length; i++) {
+                let b = data[i];
+                html += '<tr>' +
+                    '<td>' + (b.branchID !== undefined ? b.branchID : '') + '</td>' +
+                    '<td>' + (b.city || '-') + '</td>' +
+                    '<td>' + (b.address || '-') + '</td>' +
+                    '<td>' + (b.branchManager || '-') + '</td>' +
+                    '<td>' +
+                    '<button class="edit-btn" onclick="editBranch(' + (b.branchID) + ')">Edit</button>' +
+                    '<button class="delete-btn" onclick="showDeleteWithId(' + (b.branchID) + ')">Delete</button>' +
+                    '</td>' +
+                    '</tr>';
+            }
+        }
+        document.getElementById('tableBody').innerHTML = html;
+    }
+
+    function showDeleteWithId(id) {
+        document.getElementById('deleteId').value = id;
+        document.getElementById('deletePopup').style.display = 'block';
+    }
+
+
+    function editBranch(branchId) {
+        $.ajax({
+            url: '/api/branches/' + branchId,
+            type: 'GET',
+            success: function(data) {
+                let b = data[0];
+                currentId = b.branchID;
+                document.getElementById('branchId').value = b.branchID;
+                document.getElementById('city').value = b.city || '';
+                document.getElementById('address').value = b.address || '';
+                document.getElementById('manager').value = b.branchManager || '';
+                document.getElementById('branchIdRow').style.display = 'block';
+                document.getElementById('popupTitle').innerHTML = 'Edit Branch';
+                document.getElementById('addPopup').style.display = 'block';
+            },
+            error: function() { alert('Failed to load branch details'); }
+        });
+    }
+
+
+    function saveBranch() {
+        if (currentId) {
+
+            let branchData = {
+                branchID: parseInt(document.getElementById('branchId').value),
+                city: document.getElementById('city').value,
+                address: document.getElementById('address').value,
+                branchManager: document.getElementById('manager').value
+            };
+            $.ajax({
+                url: '/api/branches/' + currentId,
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(branchData),
+                success: function() {
+                    closeAddPopup();
+                    loadBranches();
+                    clearForm();
+                    alert('Branch updated');
+                },
+                error: function() { alert('Update failed'); }
+            });
+        } else {
+
+            let branchData = {
+                city: document.getElementById('city').value,
+                address: document.getElementById('address').value,
+                branchManager: document.getElementById('manager').value
+            };
+            $.ajax({
+                url: '/api/branches',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(branchData),
+                success: function() {
+                    closeAddPopup();
+                    loadBranches();
+                    clearForm();
+                    alert('Branch added');
+                },
+                error: function() { alert('Add failed'); }
+            });
+        }
+    }
+
+
+    function deleteBranch() {
+        let id = document.getElementById('deleteId').value;
+        if (id === '') {
+            alert('Enter Branch ID');
+            return;
+        }
+        if (confirm('Delete branch with ID = ' + id + '?')) {
+            $.ajax({
+                url: '/api/branches/' + id,
+                type: 'DELETE',
+                success: function() {
+                    closeDeletePopup();
+                    loadBranches();
+                    alert('Branch deleted');
+                },
+                error: function() { alert('Delete failed'); }
+            });
+        }
+    }
+
+    function clearForm() {
+        currentId = null;
+        document.getElementById('branchId').value = '';
+        document.getElementById('city').value = '';
+        document.getElementById('address').value = '';
+        document.getElementById('manager').value = '';
+    }
+
+
+    loadBranches();
+</script>
+</body>
+</html>
