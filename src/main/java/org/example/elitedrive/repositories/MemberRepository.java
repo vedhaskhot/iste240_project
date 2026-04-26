@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,11 @@ public interface MemberRepository extends JpaRepository<Member,Long>{
     List<Member> findByMemberName(String fullName);
 
     Optional<Member> findByCurrentCar(String currentCar);
+
+    @Query(value="select * from members where current_car is null and status='active'", nativeQuery = true)
+    List<Member> findCarlessActiveMembers();
+
+    Optional<Member> findByJoinDate(LocalDate joinDate);
 
     @Query(value="SELECT * from members WHERE current_car=:currentCar AND status='inactive'", nativeQuery = true)
     List<Member> findInactiveMember(@Param("currentCar") String currentCar);
