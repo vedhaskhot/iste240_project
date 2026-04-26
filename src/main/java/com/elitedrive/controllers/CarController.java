@@ -1,8 +1,8 @@
 // Author: Mohammed Saneeh - 421005948
-package com.elitedrive.controller;
+package com.elitedrive.controllers;
 
-import com.elitedrive.model.Car;
-import com.elitedrive.service.CarService;
+import com.elitedrive.models.Car;
+import com.elitedrive.services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
