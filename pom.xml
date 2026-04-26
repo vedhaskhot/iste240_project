@@ -8,11 +8,11 @@
         <version>4.0.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>org.example</groupId>
-    <artifactId>EliteDrive</artifactId>
+    <groupId>edu.rit</groupId>
+    <artifactId>projectFinal</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>EliteDrive</name>
-    <description>EliteDrive</description>
+    <name>projectFinal</name>
+    <description>projectFinal</description>
     <url/>
     <licenses>
         <license/>
@@ -39,12 +39,6 @@
             <artifactId>spring-boot-starter-webmvc</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
