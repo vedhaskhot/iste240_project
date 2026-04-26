@@ -7,6 +7,7 @@ import org.example.elitedrive.repositories.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,5 +44,21 @@ public class MemberService {
 
     public void deleteMember(Long id){
         memberRep.deleteById(id);
+    }
+
+    public Optional<Member> findByCurrentCar(String currentCar) {
+        return memberRep.findByCurrentCar(currentCar);
+    }
+
+    public List<Member> findCarLessActiveMembers() {
+        return memberRep.findCarlessActiveMembers();
+    }
+
+    public Optional<Member> findByJoinDate(LocalDate joinDate) {
+        return memberRep.findByJoinDate(joinDate);
+    }
+
+    public List<Member> findInactiveMembersByCar(String currentCar) {
+        return memberRep.findInactiveMember(currentCar);
     }
 }
