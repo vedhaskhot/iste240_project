@@ -1,4 +1,4 @@
-package edu.rit.projectfinal.services;
+package org.example.elitedrive.services;
 
 /*
  *  Name- Vedhas Vijay Khot
@@ -6,9 +6,9 @@ package edu.rit.projectfinal.services;
  */
 
 
-import edu.rit.projectfinal.entities.Branch;
-import edu.rit.projectfinal.repositories.BranchRepository;
+import org.example.elitedrive.repositories.BranchRepository;
 import jakarta.transaction.Transactional;
+import org.example.elitedrive.entities.Branch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,8 @@
 // Author: Mohammed Saneeh - 421005948
-package com.elitedrive.services;
+package org.example.elitedrive.services;
 
-import com.elitedrive.models.Car;
-import com.elitedrive.repositories.CarRepository;
+import org.example.elitedrive.entities.Car;
+import org.example.elitedrive.repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

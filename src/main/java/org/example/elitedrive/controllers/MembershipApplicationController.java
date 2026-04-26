@@ -1,8 +1,8 @@
 // By: Akhil Biju (752000700)
-package com.elitedrive.backend.controllers;
+package org.example.elitedrive.controllers;
 
-import com.elitedrive.backend.entities.MembershipApplication;
-import com.elitedrive.backend.services.MembershipApplicationService;
+import org.example.elitedrive.entities.MembershipApplication;
+import org.example.elitedrive.services.MembershipApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

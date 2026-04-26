@@ -4,10 +4,10 @@
  *  UID- 412000445
  */
 
-package edu.rit.projectfinal.controllers;
+package org.example.elitedrive.controllers;
 
-import edu.rit.projectfinal.services.BranchService;
-import edu.rit.projectfinal.entities.Branch;
+import org.example.elitedrive.services.BranchService;
+import org.example.elitedrive.entities.Branch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,7 +1,7 @@
 // By: Akhil Biju (752000700)
-package com.elitedrive.backend.repositories;
+package org.example.elitedrive.repositories;
 
-import com.elitedrive.backend.entities.MembershipApplication;
+import org.example.elitedrive.entities.MembershipApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

@@ -1,7 +1,7 @@
 // Author: Mohammed Saneeh - 421005948
-package com.elitedrive.repositories;
+package org.example.elitedrive.repositories;
 
-import com.elitedrive.models.Car;
+import org.example.elitedrive.entities.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

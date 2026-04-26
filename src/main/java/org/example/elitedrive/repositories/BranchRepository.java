@@ -3,10 +3,10 @@
  *  UID- 412000445
  */
 
-package edu.rit.projectfinal.repositories;
+package org.example.elitedrive.repositories;
 
-import edu.rit.projectfinal.entities.Branch;
 import jakarta.transaction.Transactional;
+import org.example.elitedrive.entities.Branch;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,12 +20,12 @@ public interface BranchRepository extends JpaRepository<Branch, Integer > {
     List<Branch> findAll();
 
     @Override
-   Branch save(Branch branch);
+    Branch save(Branch branch);
 
     List<Branch> findByBranchID(Integer branchID);
     
-    List<Branch> findByCity( String city);
-    List<Branch> findByAddress( String address);
+    List<Branch> findByCity(String city);
+    List<Branch> findByAddress(String address);
 
     List<Branch> findByBranchManager(String branchManager);
  @Transactional

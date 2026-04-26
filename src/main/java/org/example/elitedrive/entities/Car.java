@@ -1,5 +1,5 @@
 // Author: Mohammed Saneeh - 421005948
-package com.elitedrive.models;
+package org.example.elitedrive.entities;
 
 import jakarta.persistence.*;
 

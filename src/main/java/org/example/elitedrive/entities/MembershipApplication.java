@@ -1,5 +1,5 @@
 // By: Akhil Biju (752000700)
-package com.elitedrive.backend.entities;
+package org.example.elitedrive.entities;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
@@ -35,4 +35,5 @@ public class MembershipApplication {
     public void setStatus(String status) { this.status = status; }
     public LocalDate getSubmissionDate() { return submissionDate; }
     public void setSubmissionDate(LocalDate submissionDate) { this.submissionDate = submissionDate; }
+
 }

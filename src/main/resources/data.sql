@@ -1,3 +1,21 @@
+
+delete from branch;
+ALTER TABLE branch AUTO_INCREMENT = 1;
+insert into branch(city,address,branch_manager) values ("New York","123 Broadway St", "John Smith");
+insert into branch(city,address,branch_manager) values ("Los Angeles","Sunset Blvd", "Sarah Johnson");
+insert into branch(city,address,branch_manager) values ("Chicago","Michigan Ave", "Mike Brown");
+
+delete from membership_applications;
+INSERT INTO membership_applications (applicant_name, email, license_number, status, submission_date)
+VALUES ('John Doe', 'john.doe@example.com', 'UAE-1234567', 'PENDING', '2026-04-24');
+
+INSERT INTO membership_applications (applicant_name, email, license_number, status, submission_date)
+VALUES ('Jane Smith', 'jane.smith@example.com', 'UAE-9876543', 'APPROVED', '2026-04-21');
+
+INSERT INTO membership_applications (applicant_name, email, license_number, status, submission_date)
+VALUES ('Mike Johnson', 'mike.j@example.com', 'UAE-5555555', 'REJECTED', '2026-04-16');
+
+delete from cars;
 TRUNCATE TABLE cars;
 
 INSERT INTO cars (brand, model, year, price_per_day, available, number_of_seats) VALUES

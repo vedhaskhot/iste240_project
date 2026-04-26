@@ -1,8 +1,8 @@
 // By: Akhil Biju (752000700)
-package com.elitedrive.backend.services;
+package org.example.elitedrive.services;
 
-import com.elitedrive.backend.entities.MembershipApplication;
-import com.elitedrive.backend.repositories.MembershipApplicationRepository;
+import org.example.elitedrive.entities.MembershipApplication;
+import org.example.elitedrive.repositories.MembershipApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
