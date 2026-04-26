@@ -1,4 +1,4 @@
-package edu.rit.projectfinal.model;
+package edu.rit.projectfinal.entities;
 
 
 

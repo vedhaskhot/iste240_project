@@ -1,6 +1,6 @@
-package edu.rit.projectfinal;
+package edu.rit.projectfinal.repositories;
 
-import edu.rit.projectfinal.model.Branch;
+import edu.rit.projectfinal.entities.Branch;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

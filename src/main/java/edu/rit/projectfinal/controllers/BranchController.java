@@ -1,6 +1,7 @@
-package edu.rit.projectfinal;
+package edu.rit.projectfinal.controllers;
 
-import edu.rit.projectfinal.model.Branch;
+import edu.rit.projectfinal.services.BranchService;
+import edu.rit.projectfinal.entities.Branch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

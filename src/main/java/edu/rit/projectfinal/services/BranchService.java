@@ -1,6 +1,7 @@
-package edu.rit.projectfinal;
+package edu.rit.projectfinal.services;
 
-import edu.rit.projectfinal.model.Branch;
+import edu.rit.projectfinal.entities.Branch;
+import edu.rit.projectfinal.repositories.BranchRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
